@@ -6,10 +6,10 @@ interface ICreateUserDTO {
 }
 
 interface IUsersRepository {
-  create({ name, email }: ICreateUserDTO): User;
+  create({ name, email }: ICreateUserDTO): void;
   findById(id: string): User | undefined;
   findByEmail(email: string): User | undefined;
-  turnAdmin(user: User): User;
+  turnAdmin(user: User): void;
   list(): User[];
 }
 
