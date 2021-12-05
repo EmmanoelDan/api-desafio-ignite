@@ -1,12 +1,12 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Deasfio trabalhando com Swwager",
-        "description": "Desafio documentacao",
+        "title": "Challenge working with Swwager",
+        "description": "Documentation challenge",
         "version": "1.0.0",
         "contact": {
             "name": "Emmanoel Dantas",
-            "gitHub": "https://github.com/EmmanoelDan",
+            "gitHub": "https://github.com/EmmanoelDan/api-desafio-ignite",
             "email": "emmanuel2011.07@gmail.com"
         }
     },
