@@ -1,0 +1,329 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Deasfio trabalhando com Swwager",
+        "description": "Desafio documentacao",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Emmanoel Dantas",
+            "gitHub": "https://github.com/EmmanoelDan",
+            "email": "emmanuel2011.07@gmail.com"
+        }
+    },
+    "paths":{
+        "/user":{
+            "post":{
+                "tags": ["User"],
+                "summary": "create a User",
+                "description": "Create a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties":{
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name":"Jorge Jesus",
+                                    "email": "exemplo@gmail.com"
+                                }
+                            }            
+                        }
+                    }
+                },
+    
+                "responses":{
+                    "201":{
+                        "description": "created",
+                        "content": {
+                            "application/json": {
+                                "type": "object",
+                                "properties": {
+                                    "id":{
+                                        "type": "string"
+                                    },
+                                    "admin":{
+                                        "type": "boolean"
+                                    },
+                                    "crated_at":{
+                                        "type": "string"
+                                    },
+                                    "updated_at":{
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example":{
+                                "id": "ef3ci65c-21f8-4068-b1f0-9f1331763eb9",
+                                "admin": "false",
+                                "created_at": "2021-12-04T22:27.000Z",
+                                "updated_at": "2021-12-04T22:27.000Z",
+                                "name":"Jorge Jesus",
+                                "email": "example@gmail.com"
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "User already exists",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "error": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "error": "User already exists!"
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "tags": ["user"],
+                "summary": "return all users",
+                "description": "Only admin user can acess",
+                "parameters": [{
+                    "name":"user_id",
+                    "in": "header",
+                    "required": true,
+                    "type": "string"
+                }],
+                "reponses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content":{
+                            "application/json":{
+                                "schema": {
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
+                                            "id":{
+                                                "type": "string"
+                                            },
+                                            "admin":{
+                                                "type": "boolean"
+                                            },
+                                            "crated_at":{
+                                                "type": "string"
+                                            },
+                                            "updated_at":{
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email":{
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "example":[{
+                                        "id": ".......",
+                                        "admin": "true",
+                                        "created_at": "2021-12-04T22:27.000Z",
+                                        "updated_at": "2021-12-04T22:27.000Z",
+                                        "name":"user1",
+                                        "email": "user1@gmail.com"
+                                    },
+                                        
+                                    {
+                                        "id": "............",
+                                        "admin": "true",
+                                        "created_at": "2021-12-04T22:27.000Z",
+                                        "updated_at": "2021-12-04T22:27.000Z",
+                                        "name":"user2",
+                                        "email": "user2@gmail.com"
+                                    }
+                                    ]
+
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "user not admin",
+                            "content":{
+                                "application/json":{
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "erro":{
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "example":{
+                                        "error": "User not admin"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{user_id}":{
+            "get": {
+                "tags":["User"]
+            },
+            "summary": "list users",
+            "description": "list specified user",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses":{
+                "201":{
+                    "description": "created",
+                    "content": {
+                        "application/json": {
+                            "type": "object",
+                            "properties": {
+                                "id":{
+                                    "type": "string"
+                                },
+                                "admin":{
+                                    "type": "boolean"
+                                },
+                                "crated_at":{
+                                    "type": "string"
+                                },
+                                "updated_at":{
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        
+                        "example":{
+                            "id": ".......",
+                            "admin": "true",
+                            "created_at": "2021-12-04T22:27.000Z",
+                            "updated_at": "2021-12-04T22:27.000Z",
+                            "name":"user1",
+                            "email": "user1@gmail.com"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "user undefined",
+                "content":{
+                    "application/json":{
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "erro":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "example":{
+                            "error": "User undefined"
+                        }
+                    }
+                }
+            }
+
+        },
+        "/user/{user_id}/admin":{
+            "get": {
+                "tags":["User"]
+            },
+            "summary": "update a user",
+            "description": "list specified user",
+            "parameters": [
+                {
+                    "name": "user_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses":{
+                "201":{
+                    "description": "created",
+                    "content": {
+                        "application/json": {
+                            "type": "object",
+                            "properties": {
+                                "id":{
+                                    "type": "string"
+                                },
+                                "admin":{
+                                    "type": "boolean"
+                                },
+                                "crated_at":{
+                                    "type": "string"
+                                },
+                                "updated_at":{
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        
+                        "example":{
+                            "id": ".......",
+                            "admin": "true",
+                            "created_at": "2021-12-04T22:27.000Z",
+                            "updated_at": "2021-12-04T22:27.000Z",
+                            "name":"user1",
+                            "email": "user1@gmail.com"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "user undefined",
+                "content":{
+                    "application/json":{
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "erro":{
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "example":{
+                            "error": "User undefined"
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
